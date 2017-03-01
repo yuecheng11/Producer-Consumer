@@ -1,28 +1,31 @@
 #include "MutexLock.h"
-using namespace yc;
+#include <iostream>
 
+namespace yc
+{
 MutexLock::MutexLock():_isLocking(false)
 {
-	pthread_mutex_init(&mutex,NULL);
+	pthread_mutex_init(&_mutex,NULL);
 }
 
 MutexLock::~MutexLock()
 {
-	pthread_mutex_destroy(&mutex);
+	pthread_mutex_destroy(&_mutex);
 }
 
-MutexLock::lock()
+void MutexLock::lock()
 {
-	pthread_mutex_lock(&mutex);
+	pthread_mutex_lock(&_mutex);
 	_isLocking = true;
 }
 
-MutexLock::unlock()
+void MutexLock::unlock()
 {
-	pthread_mutex_unlock(&mutex);
-	_isLocking = true;
+	pthread_mutex_unlock(&_mutex);
+	_isLocking = false;
 }
 pthread_mutex_t* MutexLock::getMutexLockPtr()
 {
 	return &_mutex;
+}
 }

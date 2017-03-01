@@ -27,10 +27,10 @@ void ProductThread::run()
 	while(true)
 	{
 		int num = rand() % 100;
-		//cout << "produce a num:" << num << endl;
-		flockfile(stdout);
-		printf("produce num:%d\n", num);
-		funlockfile(stdout);
+		cout << "produce a num:" << num << endl;
+		//flockfile(stdout);
+		//printf("produce num:%d\n", num);
+		//funlockfile(stdout);
 		_buff.push(num);
 		sleep(1);
 	}

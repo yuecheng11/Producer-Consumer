@@ -34,26 +34,26 @@ bool Buffer::empty()
 
 void Buffer::push(int num)
 {
-	MutexLockGuard mlg(_mutex);
-	//_mutex.lock();
+	//MutexLockGuard mlg(_mutex);
+	_mutex.lock();
 	while(full()) //为了避免被异常唤醒
 		_notFull.wait();
 	_que.push(num);
 	
-	//_mutex.unlock();
+	_mutex.unlock();
 	_notEmpty.notify();
 }
 
 int Buffer::pop()
 {
-	MutexLockGuard mlg(_mutex);
-	//_mutex.lock();
+	//MutexLockGuard mlg(_mutex);
+	_mutex.lock();
 	while(empty())
 		_notEmpty.wait();
 
 	int num = _que.front();
 	_que.pop();
-	//_mutex.unlock();
+	_mutex.unlock();
 	_notFull.notify();
 	return num;
 }

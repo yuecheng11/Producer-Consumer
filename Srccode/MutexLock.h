@@ -1,10 +1,11 @@
-#ifndef _MUTEXLOCK_H_
-#define _MUTEXLOCK_H_
+#ifndef _MY_MUTEXLOCK_H_
+#define _MY_MUTEXLOCK_H_
+
 #include "Noncopyable.h"
 #include <pthread.h>
 namespace yc
 {
-class MutexLock:Noncopyable
+class MutexLock : Noncopyable
 {
 public:
 	MutexLock();
@@ -14,7 +15,7 @@ public:
 	pthread_mutex_t* getMutexLockPtr();
 	
 private:
-	Pthread_mutex_t _mutex;
+	pthread_mutex_t _mutex;
 	bool _isLocking;
 };
 }

@@ -1,11 +1,11 @@
-#ifndef _THREAD_H_
-#define _THREAD_H_
+#ifndef _MY_THREAD_H_
+#define _MY_THREAD_H_
 #include "Noncopyable.h"
 #include <pthread.h>
 
 namespace yc
 {
-class Thread:private Noncopyable
+class Thread : private Noncopyable
 {
 public:
 	Thread();

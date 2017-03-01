@@ -1,7 +1,6 @@
-#ifndef _CONDITION_H_
-#define _CONDITION_H_
+#ifndef __MY_CONDITION_H_
+#define __MY_CONDITION_H_
 #include "Noncopyable.h"
-#include "MutexLock.h"
 #include <pthread.h>
 
 namespace yc

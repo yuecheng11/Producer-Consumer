@@ -1,9 +1,11 @@
 #include "Thread.h"
 #include <iostream>
 
-using namespace yc;
-
-Thread::Thread():_pthreadId(0),isRunning(false)
+namespace yc
+{
+Thread::Thread()
+:_pthreadId(0)
+,isRunning(false)
 {
 }
 
@@ -17,7 +19,7 @@ Thread::~Thread()
 
 void Thread::start()
 {
-	pthread_create(&_pthreadId,NULL,&Thread::threadFunc(void *),this);
+	pthread_create(&_pthreadId,NULL,&Thread::threadFunc,this);
 	isRunning = true;
 }
 
@@ -30,10 +32,10 @@ void Thread::join()
 void* Thread::threadFunc(void* arg)
 {
 	Thread* pThread = static_cast<Thread*>(arg);
-	if(pThread != NULL)
+	if(pThread)
 	{
 		pThread->run();
 	}
 }
 
-
+}

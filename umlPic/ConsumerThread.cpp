@@ -24,10 +24,10 @@ void ConsumerThread::run()
 {
 	while(true)
 	{
-		//cout << "consume num:" << _buff.pop() << endl;
-		flockfile(stdout);
-		printf("consumer num:%d\n", _buff.pop());
-		funlockfile(stdout);
+		cout << "consume num:" << _buff.pop() << endl;
+		//flockfile(stdout);
+		//printf("consumer num:%d\n", _buff.pop());
+		//funlockfile(stdout);
 		sleep(2);
 	}
 }
