@@ -18,6 +18,24 @@ private:
 	pthread_mutex_t _mutex;
 	bool _isLocking;
 };
+
+class MutexLockGuard
+{
+public:
+	MutexLockGuard(MutexLock& mutex)
+		:_mutex(mutex)
+	{
+		_mutex.lock();
+	}
+
+	~MutexLockGuard()
+	{
+		_mutex.unlock();
+	}
+private:
+	MutexLock & _mutex;
+};
+
 }
 
 #endif

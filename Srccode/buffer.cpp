@@ -31,27 +31,31 @@ bool buffer::empty()
 
 void buffer::push(int data)
 {
-	_mutex.lock();
+	//_mutex.lock();
+	MutexLockGuard mlg(_mutex);
 	while(full())
 	{
-		cout<<"buffer is full ,wait...."<<endl;
+		//cout<<"buffer is full ,wait...."<<endl;
 		_notFull.wait();
 	}
 	_q.push(data);
-	_mutex.unlock();
+	//_mutex.unlock();
 	_notEmpty.notify();
 }
 
 int buffer::pop()
 {
-	_mutex.lock();
+	//_mutex.lock();
+	MutexLockGuard mlg(_mutex);
 	while(empty())
 	{
-		cout<<"buffer is empty, wait..."<<endl;
+		//cout<<"buffer is empty, wait..."<<endl;
 		_notEmpty.wait();
 	}
 	int num = _q.front();
-	_mutex.unlock();
+	_q.pop();
+	//_mutex.unlock();
 	_notFull.notify();
+	return num;
 }
 }
